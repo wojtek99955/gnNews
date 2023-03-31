@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
 const LogoContainer = styled.div`
   display: flex;
@@ -24,10 +25,12 @@ const LogoContainer = styled.div`
 `;
 const Logo = () => {
   return (
+    <Link to="/">
     <LogoContainer>
       <span>Gn</span>
       <div>News</div>
     </LogoContainer>
+    </Link>
   );
 };
 
