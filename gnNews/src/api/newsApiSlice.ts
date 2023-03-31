@@ -10,8 +10,7 @@ export const newsApiSlice = createApi({
   endpoints: (builder) => ({
     getNews: builder.query({
       query: (currenCountry) =>
-        `https://newsapi.org/v2/top-headlines?country=${currenCountry}&apiKey=${
-          import.meta.env.VITE_API_KEY
+        `https://newsapi.org/v2/top-headlines?country=${currenCountry}&apiKey=391818f85e7d4a2a88b7b2bed75fdca7
         }`,
       providesTags: [{ type: "News", id: "LIST" }],
     }),
