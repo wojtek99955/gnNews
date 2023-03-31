@@ -3,6 +3,7 @@ import { Author } from "../Article/Article";
 import { useRef } from "react";
 
 import { Container, Wrapper, Source, CloseIcon } from "./ArticleModalStyle";
+import { getImage } from "../../helpers/getImage";
 
 interface Props {
   setOpenArticleModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -45,7 +46,7 @@ const ArticleModal = ({ setOpenArticleModal, articleData }: Props) => {
         exit={{ scale: 0.6 }}
         transition={{ duration: 0.1 }}
       >
-        <img src={urlToImage} alt="" />
+        <img src={getImage(urlToImage)} alt="" />
         <Author>
           <div>{author}</div>
           <div>{publishedAt}</div>
