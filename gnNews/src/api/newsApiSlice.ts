@@ -1,5 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+
+const API_KEY = "391818f85e7d4a2a88b7b2bed75fdca7"
 export const newsApiSlice = createApi({
   reducerPath: "news",
 
@@ -10,8 +12,7 @@ export const newsApiSlice = createApi({
   endpoints: (builder) => ({
     getNews: builder.query({
       query: (currenCountry) =>
-        `https://newsapi.org/v2/top-headlines?country=${currenCountry}&apiKey=391818f85e7d4a2a88b7b2bed75fdca7
-        }`,
+        `https://newsapi.org/v2/top-headlines?country=${currenCountry}&apiKey=391818f85e7d4a2a88b7b2bed75fdca7`,
       providesTags: [{ type: "News", id: "LIST" }],
     }),
   }),
