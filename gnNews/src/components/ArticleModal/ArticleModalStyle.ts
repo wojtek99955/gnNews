@@ -26,6 +26,14 @@ export const Wrapper = styled(motion.div)`
     width: 100%;
     border-radius: 12px;
   }
+
+  h3 {
+    margin-bottom: 1rem;
+    color: #393e46;
+  }
+  p {
+    color: #393e46;
+  }
 `;
 
 export const Source = styled.a`
