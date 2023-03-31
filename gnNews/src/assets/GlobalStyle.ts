@@ -8,6 +8,9 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Open Sans', sans-serif;
 
 }
+body{
+    background-color: #e2ecfe;
+}
 `;
 
 export default GlobalStyle;
