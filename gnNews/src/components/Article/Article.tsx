@@ -2,9 +2,16 @@ import { useState } from "react";
 import styled from "styled-components";
 import ArticleModal from "../ArticleModal/ArticleModal";
 import { AnimatePresence } from "framer-motion";
+import { RootState } from "../../store/store";
+import { useSelector } from "react-redux";
+import { getImage } from "../../helpers/getImage";
 
 interface Props {
   articleData: any;
+}
+
+interface StyleProps {
+  currentView: string;
 }
 
 const Container = styled.div`
@@ -20,15 +27,19 @@ const Container = styled.div`
   }
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<StyleProps>`
+  display: ${({ currentView }) => (currentView === "grid" ? "block" : "flex")};
+  justify-content: space-between;
+  align-items: flex-start;
   img {
-    width: 100%;
-    height: 10rem;
+    width: ${({ currentView }) => (currentView === "grid" ? "100%" : "24rem")};
+    height: ${({ currentView }) =>
+      currentView === "grid" ? "12rem" : "16rem"};
     object-fit: cover;
-    object-position: top;
     border-radius: 16px;
     border: none;
-    margin-bottom: 1rem;
+    margin-bottom: ${({ currentView }) =>
+      currentView === "grid" ? "1rem" : "0"};
   }
 
   div {
@@ -41,7 +52,12 @@ const Wrapper = styled.div`
 
   h3 {
     margin-bottom: 1rem;
+    color: #393e46;
   }
+`;
+
+const TextWrapper = styled.span<StyleProps>`
+  max-width: 25rem;
 `;
 
 export const Author = styled.span`
@@ -50,7 +66,7 @@ export const Author = styled.span`
   align-items: flex-end;
   margin-bottom: 1rem;
   div {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     display: inline-block;
     margin-left: auto;
     color: #9da7af;
@@ -65,13 +81,24 @@ const Article = ({ articleData }: Props) => {
   const handleOpenArticleModal = () => {
     setOpenArticleModal(true);
   };
+
+  const currentView = useSelector(
+    (state: RootState) => state.articlesView.value
+  );
+
   return (
     <>
       <Container onClick={handleOpenArticleModal}>
-        <Wrapper>
-          <img src={urlToImage} alt="" />
-          <h3>{title}</h3>
-          <p>{description?.slice(0, 50)}...</p>
+        <Wrapper currentView={currentView}>
+          <img src={getImage(urlToImage)} alt="" />
+          <Author>
+            <div>{author}</div>
+            <div>{publishedAt}</div>
+          </Author>
+          <TextWrapper currentView={currentView}>
+            <h3>{title}</h3>
+            <p>{description?.slice(0, 50)}...</p>
+          </TextWrapper>
         </Wrapper>
       </Container>
       <AnimatePresence>
