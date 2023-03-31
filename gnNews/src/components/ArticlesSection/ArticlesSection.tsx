@@ -41,7 +41,7 @@ const ArticlesSection = () => {
 
   if (isSuccess) {
     content = articles?.articles?.map((article: any) => {
-      return <Article articleData={article} />;
+      return <Article articleData={article} key={article.title} />;
     });
   }
 
